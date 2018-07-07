@@ -8,6 +8,9 @@ import HeroList from '../views/heroes/list.vue';
 // 2 导入wuqi 列表组件
 import WuqiList from '../views/wuqi/list.vue';
 
+// 导入添加按钮的组件
+import heroAdd from '../views/heroes/add.vue'
+
 // 注册插件
 Vue.use(VueRouter)
 
@@ -25,7 +28,9 @@ const router = new VueRouter({
         // heroes 的路由规则
         { name: 'heroes', path: '/heroes', component: HeroList },
         // 1 wuqi 的路由规则
-        { name: 'wuqi', path: '/wuqi', component: WuqiList }
+        { name: 'wuqi', path: '/wuqi', component: WuqiList },
+        // 配置添加按钮的路由
+        {name : 'heroesadd', path : '/heroes/add', component:heroAdd }
 
     ]
 })

@@ -10,7 +10,7 @@
                 <label for="sex">英雄性别</label>
                 <input v-model="formdata.gender" type="text" class="form-control" id="sex" placeholder="Sex">
             </div>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" @click.prevent="handleEdit">Submit</button>
         </form>
     </div>
 </template>
@@ -22,8 +22,7 @@ import axios from 'axios'
 // 发送请求，获取数据
 // 绑定文本框
 
-
-// 2、点击submit按钮，实现更细功能
+// 2、点击submit按钮，实现更新功能
 
 export default {
     data() {
@@ -50,9 +49,22 @@ export default {
                 .get(`http://localhost:3000/heroes/${this.urlId}`)
                 .then((res) => {
                     if(res.status == 200 ) {
-                        console.log(this)   // vue实例对象
-                        console.log(res)    // 对象，res.data根据id值查询到的数据
+                        // console.log(this)   // vue实例对象
+                        // console.log(res)    // 对象，res.data根据id值查询到的数据
                         this.formdata = res.data
+                    }
+                })
+        },
+        handleEdit() {
+            axios
+                // put 传递数据等同与post ，需要传递数据，也是一个对象
+                .put(`http://localhost:3000/heroes/${this.urlId}`,this.formdata)
+                .then((res) => {
+                    if(res.status == 200) {
+                        // 跳转到数据列表页
+                        this.$router.push({name : 'heroes'});
+                    }else {
+                        alert('修改失败')
                     }
                 })
         }

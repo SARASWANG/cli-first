@@ -13,6 +13,8 @@ Vue.use(VueRouter)
 
 // 创建路由对象
 const router = new VueRouter({
+    // 配置高亮显示 的类名
+    linkExactActiveClass : 'active',
     // 书写路由规则
     routes: [
         // 配置根路径 写法一：

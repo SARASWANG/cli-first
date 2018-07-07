@@ -20,7 +20,7 @@
             <td>
               <a href="edit.html">edit</a>
               &nbsp;&nbsp;
-              <a href="javascript:window.confirm('Are you sure?')">delete</a>
+              <a @click.prevent="handleDelete(item.id)">删除</a>
             </td>
           </tr>
         </tbody>
@@ -30,31 +30,48 @@
 </template>
 
 <script>
-// 倒入axios 
-import axios from 'axios'
+// 倒入axios
+import axios from "axios";
 export default {
-  data() {
-    return {
-      list: []
+    data() {
+        return {
+            list: []
+        };
+    },
+    created() {
+        // 调用函数
+        this.loadList();
+    },
+    methods: {
+        loadList() {
+            axios
+              .get("http://localhost:3000/heroes")
+              .then(res => {
+                console.log(res.data);
+                if (res.status == 200) {
+                    this.list = res.data;
+                }
+            });
+        },
+        // 删除处理函数
+        handleDelete(id) {
+            // 删除提示
+            if (!confirm("是否确认删除？")) {
+                return;
+            }
+            axios
+              .delete(`http://localhost:3000/heroes/${id}`)
+              .then(res => {
+                if (res.status == 200) {
+                    // 删除成功，重新渲染列表
+                    this.loadList();
+                }else {
+                  alert('删除失败');
+                }
+            });
+        }
     }
-  },
-  created() {
-    // 调用函数
-    this.loadList()
-  },
-  methods : {
-    loadList() {
-      axios
-        .get('http://localhost:3000/heroes')
-        .then((res) => {
-          console.log(res.data)
-          if(res.status == 200) {
-            this.list = res.data;
-          }
-        })
-    }
-  }
-}
+};
 </script>
 
 <style>

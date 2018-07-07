@@ -15,6 +15,11 @@ Vue.use(VueRouter)
 const router = new VueRouter({
     // 书写路由规则
     routes: [
+        // 配置根路径 写法一：
+        // { name: 'home', path: '/', redirect: '/heroes' },
+        // 配置根路径 写法二：
+        { name: 'home', path: '/', redirect: {name : 'heroes'} },
+
         // heroes 的路由规则
         { name: 'heroes', path: '/heroes', component: HeroList },
         // 1 wuqi 的路由规则

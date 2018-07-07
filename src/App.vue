@@ -1,18 +1,8 @@
 <template>
   <div>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">CRUD</a>
-        </div>
-      </div>
-    </nav>
+    <!--  3 header 头部组件引用  -->
+    <add-header></add-header>
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
@@ -251,12 +241,19 @@
 </template>
 
 <script>
+// 1 导入header 组件
+import AddHeader from './components/header'
+
 export default {
     name: "app",
     data() {
         return {
             msg: "Welcome to Your Vue.js App"
         };
+    },
+    // 2 配置组件
+    components : {
+      AddHeader
     }
 };
 </script>

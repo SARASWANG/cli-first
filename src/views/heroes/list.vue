@@ -18,7 +18,8 @@
             <td>{{item.name}}</td>
             <td>{{item.gender}}</td>
             <td>
-              <a href="edit.html">edit</a>
+                <!--  点击编辑按钮  -->
+              <router-link :to="{ name: 'heroedit', params: { id: item.id } }">编辑</router-link>
               &nbsp;&nbsp;
               <a @click.prevent="handleDelete(item.id)">删除</a>
             </td>

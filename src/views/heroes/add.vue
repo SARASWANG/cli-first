@@ -36,7 +36,7 @@ export default {
                 .post('http://localhost:3000/heroes',this.formdata)
                 .then((res) => {
                     if(res.status == 201) {
-                        // 添加成功后跳转到列表页面
+                        // 添加成功后跳转到列表页面, ---参考vur-router 的编程式导航
                         this.$router.push({ name: 'heroes' });
                     }
                 })

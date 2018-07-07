@@ -11,7 +11,7 @@ import router from './routes/router'
 new Vue({
   el: '#app',
   render: h => h(App),
-  // 配置路由规则
+  // 配置路由对象
   router: router
 
 })

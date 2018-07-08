@@ -32,7 +32,7 @@
 
 <script>
 // 倒入axios
-import axios from "axios";
+
 export default {
     data() {
         return {
@@ -46,7 +46,8 @@ export default {
     methods: {
         // 加载列表函数
         loadList() {
-            axios.get("http://localhost:3000/heroes").then(res => {
+            this.$http
+            .get("heroes").then(res => {
                 console.log(res.data);
                 if (res.status == 200) {
                     this.list = res.data;
@@ -59,7 +60,8 @@ export default {
             if (!confirm("是否确认删除？")) {
                 return;
             }
-            axios.delete(`http://localhost:3000/heroes/${id}`).then(res => {
+           this.$http
+            .delete(`heroes/${id}`).then(res => {
                 if (res.status == 200) {
                     // 删除成功，重新渲染列表
                     this.loadList();

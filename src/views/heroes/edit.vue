@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+
 // 1、进入编辑页，显示当前要编辑的英雄
 // 获取url的id值
 // 发送请求，获取数据
@@ -45,8 +45,8 @@ export default {
     methods : {
         // 根据id，获取对应的英雄数据
         loadData() {
-            axios
-                .get(`http://localhost:3000/heroes/${this.urlId}`)
+            this.$http
+                .get(`heroes/${this.urlId}`)
                 .then((res) => {
                     if(res.status == 200 ) {
                         // console.log(this)   // vue实例对象
@@ -56,9 +56,9 @@ export default {
                 })
         },
         handleEdit() {
-            axios
+            this.$http
                 // put 传递数据等同与post ，需要传递数据，也是一个对象
-                .put(`http://localhost:3000/heroes/${this.urlId}`,this.formdata)
+                .put(`heroes/${this.urlId}`,this.formdata)
                 .then((res) => {
                     if(res.status == 200) {
                         // 跳转到数据列表页

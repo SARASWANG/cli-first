@@ -18,7 +18,6 @@
 
 <script>
 // 引入axios
-import axios from 'axios'
 export default {
     data() {
         return {
@@ -32,8 +31,8 @@ export default {
     methods: {
         // 点击提交按钮的处理函数
         handleAdd() {
-            axios
-                .post('http://localhost:3000/heroes',this.formdata)
+            this.$http
+                .post('heroes',this.formdata)
                 .then((res) => {
                     if(res.status == 201) {
                         // 添加成功后跳转到列表页面, ---参考vur-router 的编程式导航
